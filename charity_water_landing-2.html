@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charity Water Landing Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #0b2d5a;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    header .logo img {
+      width: 60px;
+    }
+
+    header nav a {
+      margin-left: 20px;
+      color: #f4a41c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #0b2d5a;
+      color: white;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px 60px;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 280px;
+      padding: 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 30px;
+    }
+
+    form.donate-box {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      width: 360px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .preset-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .preset-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 10px;
+      border: 2px solid #f4a41c;
+      background: white;
+      color: #f4a41c;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .preset-buttons button:hover,
+    .preset-buttons button.active {
+      background: #f4a41c;
+      color: white;
+    }
+
+    form.donate-box input[type="number"] {
+      border: 1px solid #ccc;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    form.donate-box button[type="submit"] {
+      background-color: #f4a41c;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    form.donate-box button[type="submit"]:hover {
+      background-color: #e69500;
+    }
+
+    /* Sticky donate button on mobile */
+    @media (max-width: 768px) {
+      form.donate-box button[type="submit"] {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        width: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      }
+    }
+
+    .secondary-cta {
+      margin-bottom: 25px;
+    }
+
+    .secondary-cta a {
+      display: inline-block;
+      padding: 12px 20px;
+      border: 2px solid #f4a41c;
+      border-radius: 8px;
+      color: #f4a41c;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .secondary-cta a:hover {
+      background-color: #f4a41c;
+      color: #fff;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-top: 10px;
+      max-width: 500px;
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 280px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    /* Learn More Section */
+    #learn-more {
+      background: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    #learn-more h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #0b2d5a;
+    }
+
+    #learn-more p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .impact-card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .impact-card h3 {
+      color: #f4a41c;
+      margin-bottom: 10px;
+    }
+
+    .impact-card p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    section.placeholder {
+      padding: 60px 20px;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    section.placeholder h2 {
+      font-size: 2rem;
+      color: #0b2d5a;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background-color: #0b2d5a;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer .footer-links {
+      margin-bottom: 20px;
+    }
+
+    footer .footer-links a {
+      margin: 0 15px;
+      color: #f4a41c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      margin-top: 10px;
+      color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      header nav a {
+        margin: 10px;
+      }
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      form.donate-box, .secondary-cta a {
+        margin: 0 auto 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="charity-water-logo.png" alt="Charity Water Logo" />
+    </div>
+    <nav>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate">Donate</a>
+      <a href="#social">Social Media</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Every Dollar<br> Delivers Clean Water</h1>
+      <form class="donate-box" id="donation-form">
+        <div class="preset-buttons">
+          <button type="button" data-amount="5">$5</button>
+          <button type="button" data-amount="10">$10</button>
+          <button type="button" data-amount="25">$25</button>
+        </div>
+        <input type="number" id="amount" placeholder="Enter custom amount ($)" min="1" required />
+        <button type="submit">Give Water</button>
+      </form>
+      <div class="secondary-cta">
+        <a href="#learn-more">Learn More</a>
+      </div>
+      <p>Your gift of $1, $5, or $10 goes directly to fund water projects—ensuring real people get safe, life-changing water, thanks to you.</p>
+    </div>
+    <div class="hero-image">
+      <img src="family.jpg" alt="Community benefiting from clean water" />
+    </div>
+  </section>
+
+  <section id="learn-more">
+    <h2>See the Impact of Your Donation</h2>
+    <p>Every dollar you give contributes directly to clean water projects around the world. Here’s how your donation makes a difference in real communities:</p>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <h3>🚰 New Wells</h3>
+        <p>Your support funds the construction of new wells that bring clean, safe water to villages that need it most.</p>
+      </div>
+      <div class="impact-card">
+        <h3>👩‍👧 Empowering Women</h3>
+        <p>With water close to home, women and girls spend less time walking and more time in school and work.</p>
+      </div>
+      <div class="impact-card">
+        <h3>🌱 Healthier Families</h3>
+        <p>Clean water reduces diseases and helps families live healthier, more productive lives.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="placeholder">
+    <h2>About Us</h2>
+    <p>Learn about our mission, vision, and the team bringing clean water to communities worldwide.</p>
+  </section>
+
+  <section id="contact" class="placeholder">
+    <h2>Contact</h2>
+    <p>Get in touch with us for partnerships, support, or more information.</p>
+  </section>
+
+  <section id="donate" class="placeholder">
+    <h2>Donate</h2>
+    <p>Every dollar counts. Join us in changing lives through clean water.</p>
+  </section>
+
+  <section id="social" class="placeholder">
+    <h2>Social Media</h2>
+    <p>Follow us on Facebook, Twitter, and Instagram to stay updated on our projects.</p>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate">Donate</a>
+      <a href="#social">Social Media</a>
+    </div>
+    <p>&copy; 2025 Charity Water. All rights reserved.</p>
+  </footer>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    const stripe = Stripe("pk_test_yourPublishableKeyHere");
+
+    const form = document.getElementById('donation-form');
+    const amountInput = document.getElementById('amount');
+    const presetButtons = document.querySelectorAll('.preset-buttons button');
+
+    presetButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        presetButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        amountInput.value = btn.dataset.amount;
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const amount = amountInput.value;
+
+      if (!amount || amount < 1) {
+        alert("Please enter a valid amount (at least $1).");
+        return;
+      }
+
+      alert(`Redirecting to payment page for $${amount}`);
+    });
+  </script>
+</body>
+</html>
