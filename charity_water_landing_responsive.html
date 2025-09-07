@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charity Water Landing Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background: #000;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #fff;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Mobile menu animation */
+    .nav-links.active {
+      display: block;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #000;
+      padding: 1rem;
+      border-radius: 5px;
+      animation: slideIn 0.3s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1508717272800-9fff97da7e8f') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .donation-box {
+      background: #fff;
+      color: #000;
+      padding: 2rem;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .donation-box input,
+    .donation-box button {
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .donation-box input {
+      border: 1px solid #ccc;
+    }
+
+    .donation-box button {
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .donation-box button:hover {
+      background: #e6b800;
+    }
+
+    .secondary-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #ffcc00;
+      border-radius: 5px;
+      background: transparent;
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .secondary-btn:hover {
+      background: #ffcc00;
+      color: #000;
+    }
+
+    .learn-more {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .impact-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer a {
+      color: #ffcc00;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Charity Water</h1>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#learn-more">Learn More</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate">Donate</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <h2>Give Clean Water Today</h2>
+    <p>Every story begins with water. Your donation helps families build healthier lives and brighter futures.</p>
+    <div class="donation-box">
+      <form id="donation-form">
+        <input type="number" id="amount" name="amount" placeholder="Enter donation amount ($)" min="1" required />
+        <button type="submit">Give Water</button>
+      </form>
+      <a href="#learn-more" class="secondary-btn">Learn More</a>
+    </div>
+  </section>
+
+  <section class="learn-more" id="learn-more">
+    <h2>See Your Impact</h2>
+    <p>Your donations bring clean water to communities around the world.</p>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <h3>💧 Wells Built</h3>
+        <p>Over 60,000 water projects funded worldwide.</p>
+      </div>
+      <div class="impact-card">
+        <h3>👨‍👩‍👧‍👦 Lives Changed</h3>
+        <p>12 million people now have access to clean drinking water.</p>
+      </div>
+      <div class="impact-card">
+        <h3>🌍 Global Reach</h3>
+        <p>Active projects in 29 countries across Africa, Asia, and Latin America.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      <a href="#about">About Us</a> |
+      <a href="#contact">Contact</a> |
+      <a href="#donate">Donate</a> |
+      <a href="#social">Social Media</a>
+    </p>
+    <p>&copy; 2025 Charity Water. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('.nav-links');
+      nav.classList.toggle('active');
+    }
+
+    document.getElementById('donation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const amount = document.getElementById('amount').value;
+      if (amount && amount >= 1) {
+        alert(`Thank you for donating $${amount}!`);
+      } else {
+        alert('Please enter a valid donation amount.');
+      }
+    });
+  </script>
+</body>
+</html>
